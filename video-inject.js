@@ -1,6 +1,6 @@
 // Video injection script
 // CHANGE THIS URL TO YOUR RAILWAY BACKEND URL
-const BACKEND_URL = 'https://YOUR-APP.up.railway.app'; // CHANGE THIS TO YOUR RAILWAY URL!
+const BACKEND_URL = 'https://eloquent-achievement-production.up.railway.app'; // Your Railway backend!
 
 (function() {
   async function checkAndInjectVideo() {
