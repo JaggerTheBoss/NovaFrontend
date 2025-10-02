@@ -1,0 +1,5 @@
+nova-backend/
+.git
+.claude
+*.backup
+README.md

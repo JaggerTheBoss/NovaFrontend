@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nova Admin</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .container {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      min-width: 400px;
+    }
+    h1 {
+      margin: 0 0 1rem 0;
+      color: #333;
+    }
+    .status {
+      font-size: 1.2rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .status.normal {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+    .status.video {
+      background: #f3e5f5;
+      color: #7b1fa2;
+    }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-weight: 600;
+    }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Nova Control Panel</h1>
+    <div id="status" class="status">Loading...</div>
+    <button onclick="toggleMode()">Toggle Mode</button>
+  </div>
+
+  <script>
+    // CHANGE THIS URL TO YOUR RAILWAY BACKEND URL
+    const BACKEND_URL = 'https://YOUR-APP.up.railway.app'; // CHANGE THIS TO YOUR RAILWAY URL!
+
+    async function loadStatus() {
+      const res = await fetch(`${BACKEND_URL}/api/mode`);
+      const data = await res.json();
+      updateStatus(data.videoMode);
+    }
+
+    function updateStatus(videoMode) {
+      const statusEl = document.getElementById('status');
+      if (videoMode) {
+        statusEl.textContent = '🎥 Video Mode Active';
+        statusEl.className = 'status video';
+      } else {
+        statusEl.textContent = '✓ Normal Mode Active';
+        statusEl.className = 'status normal';
+      }
+    }
+
+    async function toggleMode() {
+      const res = await fetch(`${BACKEND_URL}/api/toggle`, { method: 'POST' });
+      const data = await res.json();
+      updateStatus(data.videoMode);
+    }
+
+    loadStatus();
+  </script>
+</body>
+</html>

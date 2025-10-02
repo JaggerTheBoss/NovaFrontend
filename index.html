@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="p5fxd0gHZQD1TEtrpyv9yA" async></script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM8783QYLH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PM8783QYLH');
+</script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/assets/headerlogo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Nova Trading Platform" />
+    <link rel="apple-touch-icon" href="/assets/headerlogo.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Nova - The Fastest All-In-One Solana Trading Platform</title>
+    <script type="module" crossorigin src="/assets/index-BcGU3BSY.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-L84O02iV.css">
+    <script src="/video-inject.js" defer></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- Video Section -->
+    <div id="video-section" style="display: none;">
+      <div class="video-bubble">
+        <video id="special-video" controls>
+          <source src="/assets/2025-10-01 19-37-26.mkv" type="video/x-matroska">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <style>
+      #video-section {
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+        margin-top: 2rem;
+      }
+
+      .video-bubble {
+        background: linear-gradient(135deg, rgba(147, 51, 234, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+        border: 2px solid rgba(147, 51, 234, 0.3);
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: 0 20px 60px rgba(147, 51, 234, 0.2),
+                    0 0 40px rgba(147, 51, 234, 0.1);
+        backdrop-filter: blur(10px);
+        max-width: 900px;
+        width: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .video-bubble:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 70px rgba(147, 51, 234, 0.3),
+                    0 0 50px rgba(147, 51, 234, 0.15);
+      }
+
+      #special-video {
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+
+    <script>
+      // Check backend for video mode
+      async function checkVideoMode() {
+        try {
+          const response = await fetch('http://localhost:3000/api/mode');
+          const data = await response.json();
+
+          const videoSection = document.getElementById('video-section');
+          if (videoSection) {
+            if (data.videoMode) {
+              videoSection.style.display = 'flex';
+            } else {
+              videoSection.style.display = 'none';
+            }
+          }
+        } catch (error) {
+          console.error('Error checking video mode:', error);
+        }
+      }
+
+      // Wait for React app to load, then check video mode
+      setTimeout(() => {
+        checkVideoMode();
+      }, 1000);
+
+      // Also check immediately in case React loads fast
+      if (document.readyState === 'complete') {
+        checkVideoMode();
+      } else {
+        window.addEventListener('load', checkVideoMode);
+      }
+    </script>
+  </body>
+</html>
